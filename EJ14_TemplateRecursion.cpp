@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 /*
- This program use templates to make the fibonacci secuence at compile time
- This can be used to add new classes at compile time like a way to do
-runtime types 
+ This program use templates to make the fibonacci secuence at compile time.
+ Pro: Increase runtime performance.
+ Cons: Increase compile time.
 */
 // TODO: Explore the flexibilty of templates recursion.
 // TODO: Fix program
