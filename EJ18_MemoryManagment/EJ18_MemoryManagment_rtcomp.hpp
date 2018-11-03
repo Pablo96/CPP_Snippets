@@ -1,12 +1,10 @@
 #pragma once
 #include <iostream>
+#include "EJ18_MemoryManagment_common.hpp"
 
-typedef unsigned int uint32;
 
 // keep count of the components
-struct ComponentManager{
-    static uint32 componentsCounts;
-};
+static uint32 componentsCounts = 0;
 
 struct BaseComponent
 {
@@ -32,3 +30,7 @@ struct Component: public BaseComponentMetaData<T>
     }
 };
 
+template<class component>
+uint32 BaseComponentMetaData<component>::ID = componentsCounts++;
+template<class component>
+size_t BaseComponentMetaData<component>::SIZE = sizeof(component);
