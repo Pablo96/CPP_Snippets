@@ -38,10 +38,6 @@ int main()
     comp.print();
     comp.printSize();
 
-    std::cout << "every float has " << sizeof(int) <<" bytes" <<
-                " and the base component has a 32b" <<
-                " pointer which is 4 bytes" << std::endl;
-
     MyComponent<long long> comp2(42, 611);
     comp2.print();
     comp2.printSize();
@@ -50,5 +46,13 @@ int main()
                 " and the base component has a 32b" <<
                 " pointer which is 4 bytes + 4 bytes for padding" << std::endl;
 
+    MyComponent<long long> comp3(55, 774);
+    comp2.print();
+    comp2.printSize();
+
+    std::cout << "every double has " << sizeof(long long) <<" bytes" <<
+                " and the base component has a 32b" <<
+                " pointer which is 4 bytes + 4 bytes for padding" << std::endl;
+
+    std::cout << std::endl << "Note that the same component type has the same ID." << std::endl;
     return 0;
-}

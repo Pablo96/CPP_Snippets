@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "EJ18_MemoryManagment_common.hpp"
-
 
 // keep count of the components
 static uint32 componentsCounts = 0;
@@ -12,6 +12,14 @@ struct BaseComponent
 };
 
 
+/*
+In this snippet (EJ18) we add the create and delete functions so we do the mem managment of the components.
+Here we define the functions signatures.
+*/
+typedef void (*CreateFunction)(void* ptr, BaseComponent* component);
+typedef void (*DeleteFunction)(BaseComponent* component);
+
+// ComponentsType Metadata
 template <class component>
 struct BaseComponentMetaData: public BaseComponent
 {

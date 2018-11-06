@@ -106,6 +106,7 @@ namespace Prototyping{
 
 namespace Singleton 
 {
+    //TODO: Check.
     class StringSingleton
     {
     public:
@@ -118,7 +119,7 @@ namespace Singleton
         // Default constructor available only to members or friends of this class
         StringSingleton(){}
     
-        // This functions arnt given body so if we accidentally callthem will have compile errors
+        // This functions arnt given body so if we accidentally call them will have compile errors
     private:    
         //disallow assignment operator
         const StringSingleton &operator=(const StringSingleton &old); 
@@ -389,11 +390,12 @@ namespace Mixin
     }
 
 }// Fin Mixin
+
 int main()
 {
     //Prototyping::main();
-    //Singleton::main();
+    Singleton::main();
     //Decorators::main();
-    Mixin::main();
+    ///Mixin::main();
     return 0;
 }
