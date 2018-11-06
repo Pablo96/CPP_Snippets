@@ -5,31 +5,37 @@ using namespace std;
  Pro: Increase runtime performance.
  Cons: Increase compile time.
 */
-// TODO: Explore the flexibilty of templates recursion.
 // TODO: Fix program
 
 template<int N>
 struct Fibonacci
 {
-    static const int value = Fibonacci<N-2>::value + Fibonacci<N-1>::value;
+   static const int value = Fibonacci<N-2>::value + Fibonacci<N-1>::value;
 };
 
 template<>
-Fibonacci<0>
+struct Fibonacci<0>
 {
-    static const int value = 1;
-};
-template<>
-Fibonacci<1>
-{
-    static const int value = 1;
+   static const int value = 0;
 };
 
+
+template<>
+struct Fibonacci<1>
+{
+   static const int value = 1;
+};
+
+
+template<>
+struct Fibonacci<2>
+{
+   static const int value = 1;
+};
 
 int main()
 {
- 
-    cout << Fibonacci<3>::value << endl;
+    cout << Fibonacci<11>::value << endl;
 
     return 0;
 }
