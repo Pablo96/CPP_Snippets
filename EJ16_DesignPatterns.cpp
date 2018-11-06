@@ -106,25 +106,33 @@ namespace Prototyping{
 
 namespace Singleton 
 {
-    //TODO: Check.
-    class StringSingleton
+    /*
+    Make it a template and make instance type the typename of the template to make it more generic.
+    */
+    class Singleton
     {
+        static Singleton* instance;
     public:
-        static StringSingleton* getInstance()
+        static Singleton* getInstance()
         {
-            static StringSingleton instance;
-            return &instance;
+            /*
+            Not multithread safe.
+            Can be corrected using mutex for checking and creating the instance.
+            */
+            if (!instance)
+                instance = new Singleton();
+            return instance;
         }
     protected: 
         // Default constructor available only to members or friends of this class
-        StringSingleton(){}
+        Singleton(){}
     
-        // This functions arnt given body so if we accidentally call them will have compile errors
+        // This functions arent given body so if we accidentally call them will have compile errors
     private:    
         //disallow assignment operator
-        const StringSingleton &operator=(const StringSingleton &old); 
+        const Singleton &operator=(const Singleton &old); 
         // disallow copy constructor
-        StringSingleton(const StringSingleton &old); 
+        Singleton(const Singleton &old);
 
 
         // Note that although this should be allowed, 
@@ -133,15 +141,17 @@ namespace Singleton
         // which was otherwise created on the heap
         // In any especial case we want to delete a singleton
         // i think is better to give it a shutdown method or similar
-        ~StringSingleton(){}
+        ~Singleton(){}
     };
  
+    Singleton* Singleton::instance = nullptr;
+
     void main()
     {
-        StringSingleton* obj1 = StringSingleton::getInstance();
-        StringSingleton* obj2 = StringSingleton::getInstance();
+        Singleton* obj1 = Singleton::getInstance();
+        Singleton* obj2 = Singleton::getInstance();
 
-        printf("obj1 %ld  obj2 %ld", (long) obj1, (long) obj2);
+        printf("obj1 %d  obj2 %d", (unsigned int) obj1, (unsigned int) obj2);
     }
 }// Fin Singleton
 
@@ -253,7 +263,7 @@ namespace Decorators
     {
         // Create our first base car
         Car* car = new CarModel1();
-        cout << car->getDescription() << "\costs: $" << car->getCost() << endl;
+        cout << car->getDescription() << "\tcosts: $" << car->getCost() << endl;
 
         // Now the interesting part:
         // Since Decorations have car as it base class we can do this
